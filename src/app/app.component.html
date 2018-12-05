@@ -1,0 +1,59 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+
+  <form class="col-md-8 mx-auto mt-5">
+    <h1 class="mb-3">
+      Formulário de Contato
+    </h1>
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nome do Contato"
+        [(ngModel)]="contato.nome" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label></label>
+      <input type="texto" class="form-control" placeholder="Telefone" [(ngModel)]="contato.telefone"
+        [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="contato.email"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+    <button type="submit" (click)="insert()" [disabled]="!contato.nome || !contato.telefone || !contato.email" class="btn btn-primary">Salvar
+      Contato</button>
+
+    <div class="mt-5">
+      <h2>Lista </h2>
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th class="text-danger">Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contato of contatos | async">
+            <td>{{ contato.nome }}</td>
+            <td>{{ contato.telefone }}</td>
+            <td>{{ contato.email }}</td>
+            <td class="text-danger text-center" (click) = "delete(contato.key)" style="cursor:pointer"><i class="fas fa-trash-alt"></i></td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </form>
+
+
+
+
+
+
+
+
+  <router-outlet></router-outlet>
+</div>
